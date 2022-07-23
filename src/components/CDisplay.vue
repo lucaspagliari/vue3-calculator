@@ -17,7 +17,7 @@ const history = computed<string[]>(() => {
     <div v-for="h in history" :key="h" class="text-slate text-lg">
       {{ h }}
     </div>
-    <div>
+    <div data-test="display">
       {{ calculation || "0" }}
     </div>
   </div>

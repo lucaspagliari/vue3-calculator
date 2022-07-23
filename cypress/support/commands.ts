@@ -25,13 +25,21 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+Cypress.Commands.add("getTestId", (selector: string) => {
+  return cy.get(`[data-test='${selector}']`);
+});
+Cypress.Commands.add("typeCalculation", (calculation: string) => {
+  const sequence = calculation.split("").filter((e) => !!e.trim());
+  sequence.forEach((e) => {
+    cy.getTestId(e).click();
+  });
+});
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      getTestId(selector: string): Chainable<any>;
+      typeCalculation(calculation: string): Chainable<any>;
+    }
+  }
+}
