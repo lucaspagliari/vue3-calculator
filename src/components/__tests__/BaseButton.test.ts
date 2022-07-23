@@ -18,7 +18,7 @@ describe("BaseButton", () => {
     expect(wrapper.classes()).toContain("white");
   });
 
-  it("should renders text on slot", () => {
+  it("should renders text on slot", () => { 
     const text = "calculator button";
     const wrapper = mount(BaseButton, { slots: { default: text } });
     expect(wrapper.text()).toContain(text);

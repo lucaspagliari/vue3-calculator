@@ -9,13 +9,15 @@ describe("CDisplay", () => {
     expect(wrapper.vm).toBeDefined();
   });
 
-  it("should render text on slot", () => {
-    const text = "my operation";
+  it("should render props history and calculation", () => {
     const wrapper = mount(CDisplay, {
-      slots: {
-        default: text,
-      },
+      props: {
+        calculation: "123",
+        history: ["calc", "math"]
+      }
     });
-    expect(wrapper.text()).toContain(text);
+    expect(wrapper.text()).toContain('123');
+    expect(wrapper.text()).toContain('calc');
+    expect(wrapper.text()).toContain('math');
   });
 });
